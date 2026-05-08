@@ -1,0 +1,122 @@
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.draggable-component {
+  position: absolute;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* ── Selection ring ─────────────────────────────────────────── */
+.selection-outline {
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid var(--accent, #2f81f7);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 0 0 3px rgba(47,129,247,0.15);
+}
+
+/* ── Delete button ──────────────────────────────────────────── */
+.delete-btn {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bg, #0f1117);
+  background: var(--red, #f85149);
+  color: #fff;
+  font-size: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.1s;
+}
+.delete-btn:hover { transform: scale(1.2); background: #da3633; }
+
+/* ── Resize handles — shared ────────────────────────────────── */
+.resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border: 1.5px solid var(--accent, #2f81f7);
+  border-radius: 2px;
+  z-index: 110;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* corners */
+.rh-nw { top: -4px;  left: -4px;  }
+.rh-ne { top: -4px;  right: -4px; }
+.rh-se { bottom: -4px; right: -4px; }
+.rh-sw { bottom: -4px; left: -4px;  }
+
+/* edges — centered on each side */
+.rh-n  { top: -4px;    left: 50%; transform: translateX(-50%); }
+.rh-s  { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.rh-e  { right: -4px;  top: 50%;  transform: translateY(-50%); }
+.rh-w  { left: -4px;   top: 50%;  transform: translateY(-50%); }
+
+/* ── Editable text ──────────────────────────────────────────── */
+.draggable-text-content {
+  width: 100%;
+  height: 100%;
+  cursor: text;
+  word-break: break-word;
+  overflow: hidden;
+}
+
+.draggable-text-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: 1px solid var(--accent, #2f81f7);
+  outline-offset: 2px;
+  border-radius: 2px;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+/* ── Canvas element resets ──────────────────────────────────── */
+.canvas-button {
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-input,
+.canvas-textarea,
+.canvas-select {
+  font-family: inherit;
+  display: block;
+}
+
+/* ── Layout container inner ─────────────────────────────────── */
+.layout-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+}
+
+.layout-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-3, #6e7681);
+  border: 1px dashed var(--border, #30363d);
+  border-radius: var(--radius-s, 4px);
+  pointer-events: none;
+}
